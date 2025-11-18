@@ -24,7 +24,7 @@ end
 set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
 
 # NVM
-set --universal nvm_default_version v22.19.0
+set --universal nvm_default_version v24.11.1
 
 # Homebrew
 fish_add_path /opt/homebrew/bin/

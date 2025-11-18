@@ -111,7 +111,7 @@ return {
 	},
 	{
 		"mistricky/codesnap.nvim",
-    enabled=false,
+		enabled = false,
 		build = "make build_generator",
 		keys = {
 			{ "<leader>xX", "<cmd>CodeSnap<cr>", mode = "x", desc = "Save selected code snapshot into clipboard" },
@@ -216,27 +216,6 @@ return {
 			show_folds = false, -- Disable folding for cleaner look
 		},
 	},
--- Commented out to avoid disabling base blink.cmp
---	{
---		"saghen/blink.cmp",
---		enabled = false,
---		dependencies = {
---			"fang2hou/blink-copilot",
---		},
---		opts = {
---			sources = {
---				default = { "copilot" },
---				providers = {
---					copilot = {
---						name = "copilot",
---						module = "blink-copilot",
---						score_offset = 100,
---						async = true,
---					},
---				},
---			},
---		},
---	},
 	{
 		"fang2hou/blink-copilot",
 		enabled = false,
@@ -290,20 +269,6 @@ return {
 			{ "<leader>ao", "<cmd>Augment signout<cr>", desc = "Sign Out from Augment" },
 			{ "<leader>aX", "<cmd>Augment disable<cr>", desc = "Disable Augment" },
 			{ "<leader>ax", "<cmd>Augment enable<cr>", desc = "Enable Augment" },
-		},
-	},
-	{
-		"jackMort/ChatGPT.nvim",
-		event = "VeryLazy",
-		enabled = false,
-		config = function()
-			require("chatgpt").setup()
-		end,
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"folke/trouble.nvim", -- optional
-			"nvim-telescope/telescope.nvim",
 		},
 	},
 }

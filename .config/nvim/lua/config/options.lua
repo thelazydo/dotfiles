@@ -27,7 +27,6 @@ vim.diagnostic.config({
 	},
 })
 
-
 opt.winborder = "rounded"
 opt.scrolloff = 8
 opt.sidescrolloff = 8

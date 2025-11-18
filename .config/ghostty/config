@@ -11,7 +11,7 @@ font-family = "ZedMono Nerd Font"
 
 font-size = 15
 cursor-color = "#7aa2f9"
-background-opacity = 1.95
+background-opacity = 0.90
 background-blur = true
 quick-terminal-position = left
 quick-terminal-screen = mouse
