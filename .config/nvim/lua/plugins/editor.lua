@@ -18,6 +18,7 @@ return {
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
+		-- enabled = false,
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
@@ -25,8 +26,7 @@ return {
 			ignore = function(buf)
 				local name = vim.api.nvim_buf_get_name(buf)
 				print(name)
-				vim.notify(name, 2)
-				return string.find(name, "~/tldo/") ~= nil
+				return string.find(name, "/tldo/") ~= nil
 			end,
 		},
 	},
@@ -185,5 +185,16 @@ return {
 			signature = { enabled = true },
 		},
 		opts_extend = { "sources.default" },
+	},
+	{
+		"norcalli/nvim-colorizer.lua",
+		opts = {},
+		config = function()
+			vim.opt.termguicolors = true
+			require("colorizer").setup({
+				"css",
+				"javascript",
+			})
+		end,
 	},
 }

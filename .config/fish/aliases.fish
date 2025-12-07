@@ -7,6 +7,12 @@ abbr --add l "lsd -l"
 abbr --add v nvim
 
 ## Config
+abbr --add bri "brew info"
+abbr --add brs "brew search"
+abbr --add bru "brew uninstall"
+abbr --add bra "brew install"
+
+## Config
 abbr --add ec "cd ~/dotfiles/.config/ && ffpn"
 abbr --add ek "cd ~/dotfiles/.config/kitty/kitty.conf && ffpn"
 abbr --add eg "cd ~/dotfiles/.config/ghostty && ffpn"

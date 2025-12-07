@@ -6,11 +6,9 @@ return {
 
 		require("mini.pairs").setup()
 		require("mini.icons").setup()
-
+		require("mini.hipatterns").setup()
 		require("mini.statusline").setup()
-
 		require("mini.align").setup()
-
 		require("mini.surround").setup({
 			custom_surroundings = nil,
 			highlight_duration = 500,

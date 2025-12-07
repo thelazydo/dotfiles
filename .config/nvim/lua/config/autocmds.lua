@@ -159,3 +159,17 @@ vim.api.nvim_create_autocmd("FileType", {
 		end)
 	end,
 })
+
+-- vim.api.nvim_create_autocmd("BufEnter", {
+-- 	pattern = "*.md",
+-- 	callback = function()
+-- 		local ignored_path = "/tldo"
+-- 		local current_file = vim.fn.expand("%:p")
+--
+-- 		if string.find(current_file, ignored_path, 1, true) then
+-- 			pcall(vim.cmd, "RenderMarkdown disable")
+-- 		else
+-- 			pcall(vim.cmd, "RenderMarkdown enable")
+-- 		end
+-- 	end,
+-- })

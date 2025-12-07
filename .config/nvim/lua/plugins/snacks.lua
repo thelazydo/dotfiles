@@ -20,6 +20,7 @@ return {
 		bigfile = { enabled = true },
 		dashboard = { enabled = true },
 		explorer = { enabled = true },
+
 		indent = { enabled = true },
 		input = { enabled = true },
 		notifier = {
@@ -29,7 +30,7 @@ return {
 		picker = { enabled = true },
 		quickfile = { enabled = true },
 		scope = { enabled = true },
-		scroll = { enabled = true },
+		-- scroll = { enabled = true },
 		statuscolumn = { enabled = true },
 		words = { enabled = true },
 		styles = {
@@ -42,9 +43,9 @@ return {
   keys = {
     { "<leader>st",      function() Snacks.picker.todo_comments() end,                           desc = "Todo comments",            mode = { "n", "x" } },
     { "<leader>tg",      function() Snacks.terminal("gemini", { win = { position = "float" } }) end,           mode = "n",                        desc = "Gemini Cli" },
+    { "<leader>ts",      function() Snacks.terminal("spotify_player", { win = { position = "float" } }) end,           mode = "n",                        desc = "Gemini Cli" },
     { "<leader>tt",      function() Snacks.terminal("taskui", { win = { position = "float" } }) end,           mode = "n",                        desc = "Task Warrior UI" },
     { "<leader>ty",      function() Snacks.terminal("y", { win = { position = "float" } }) end,           mode = "n",                        desc = "Yazi File Explorer" },
-    { "<leader>ts",      function() Snacks.terminal("spf", { win = { position = "float" } }) end,           mode = "n",                        desc = "Superfile File Explorer" },
     { "<leader>td",      function() Snacks.terminal("lazydocker", { win = { position = "float" } }) end,           mode = "n",                        desc = "Lazy Docker" },
     { "<leader>fi", function() Snacks.picker.files({ hidden = true, ignored = true, exclude = vim.g.exclude_finds }) end, mode = "n", desc = "Find git ignored & hidden files" },
     -- Top Pickers & Explorer

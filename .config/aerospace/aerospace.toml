@@ -1,7 +1,7 @@
 # MT(MOD_LCTL | MOD_LSFT | MOD_LALT | MOD_LGUI,KC_ENT)
 after-startup-command = []
 start-at-login = true
-enable-normalization-flatten-containers = true
+enable-normalization-flatten-containers = false
 enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 30
 default-root-container-layout = 'tiles'
@@ -25,6 +25,7 @@ automatically-unhide-macos-hidden-apps = true
 
     alt-slash = 'layout tiles horizontal vertical'
     alt-comma = 'layout accordion horizontal vertical'
+    alt-shift-v = 'split vertical'
 
     alt-h = 'focus left'
     alt-j = 'focus down'
@@ -38,6 +39,8 @@ automatically-unhide-macos-hidden-apps = true
 
     alt-minus = 'resize smart -50'
     alt-equal = 'resize smart +50'
+    alt-shift-g = ['exec-and-forget open -a Ghostty', 'workspace 6']
+    alt-shift-b = ['exec-and-forget open -a Google\ Chrome', 'workspace 1']
 
     alt-1 = 'workspace 1'
     alt-2 = 'workspace 2'
@@ -65,6 +68,7 @@ automatically-unhide-macos-hidden-apps = true
     2 = 'main'
     3 = 'main'
     4 = 'main'
+
     5 = 'main'
     6 = ['secondary', 'main']
     7 = ['secondary', 'main']
@@ -92,3 +96,11 @@ automatically-unhide-macos-hidden-apps = true
     down = 'volume down'
     up = 'volume up'
     shift-down = ['volume set 0', 'mode main']
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace 6'
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace 1'

@@ -122,7 +122,6 @@ map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
-map("n", "<leader>bd", "<cmd>bp|bd #<cr>", { desc = "Delete Buffer" })
 map("n", "<leader>bo", function()
 	local current = vim.api.nvim_get_current_buf()
 
@@ -137,6 +136,27 @@ map("n", "<leader>bo", function()
 	vim.notify("Other saved buffers deleted", vim.log.levels.INFO)
 end, { desc = "Delete Other File Buffers" })
 
+-- map("n", "<leader>bd", "<cmd>bp|bd #<cr>", { desc = "Delete Buffer" })
+map("n", "<leader>bd", function()
+	local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+	-- If this is the last, delete and open dashboard
+	if #bufs == 1 then
+		vim.api.nvim_buf_delete(bufs[1].bufnr, { force = true })
+		require("snacks.dashboard").open()
+		return
+	end
+
+	local current = vim.api.nvim_get_current_buf()
+
+	vim.cmd("bp")
+
+	if vim.api.nvim_buf_is_valid(current) then
+		vim.api.nvim_buf_delete(current, { force = true })
+	else
+		vim.cmd("bd #")
+	end
+end, { desc = "Delete Buffer" })
+
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
 -- Format
@@ -147,6 +167,8 @@ map("n", "<leader>Ef", "<cmd>echo &filetype<cr>", { desc = "Echo file type" })
 map("n", "<leader>Eb", "<cmd>echo &buftype<cr>", { desc = "Echo file type" })
 
 -- Terminal Mappings
+map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+map("t", "<C-_>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 map("t", "<C-]>", "<C-\\><C-n>", { desc = "Enter Copy Mode" })
 
 local gotod = function(next, severity)
@@ -181,10 +203,10 @@ map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, 
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+map("n", "<C-Up>", "<cmd>resize +5<cr>", { desc = "Increase Window Height" })
+map("n", "<C-Down>", "<cmd>resize -5<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-Left>", "<cmd>vertical resize -5<cr>", { desc = "Decrease Window Width" })
+map("n", "<C-Right>", "<cmd>vertical resize +5<cr>", { desc = "Increase Window Width" })
 
 -- Move Lines
 map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
