@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 
 map("n", "<leader>o", ":update<CR> :source $MYVIMRC<CR>", { desc = "Source " })
+map("n", "<leader>so", ":source %<CR>", { desc = "Source " })
 
 -- lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })

@@ -1,5 +1,20 @@
 return {
 	{
+
+		"CRAG666/code_runner.nvim",
+        -- stylua: ignore
+		keys = {
+			{"<leader>rr", ":RunCode<CR>", noremap = true, silent = false, desc="RunCode", mode = { "n" }, },
+			{"<leader>rf", ":RunFile<CR>", noremap = true, silent = false, desc="RunFile", mode = { "n" }, },
+			{"<leader>rft", ":RunFile tab<CR>", noremap = true, silent = false, desc="Run File tab", mode = { "n" }, },
+			{"<leader>rp", ":RunProject<CR>", noremap = true, silent = false, desc="Run Project", mode = { "n" }, },
+			{"<leader>rc", ":RunClose<CR>", noremap = true, silent = false, desc="RunClose",mode = { "n" }, },
+			{"<leader>Rrf", ":CRFiletype<CR>", noremap = true, silent = false, desc="CRFiletype", mode = { "n" }, },
+			{"<leader>Rrp", ":CRProjects<CR>", noremap = true, silent = false, desc="CRProjects", mode = { "n" }, },
+		},
+		config = true,
+	},
+	{
 		"gbprod/substitute.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
@@ -23,11 +38,11 @@ return {
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {
-			ignore = function(buf)
-				local name = vim.api.nvim_buf_get_name(buf)
-				print(name)
-				return string.find(name, "/tldo/") ~= nil
-			end,
+			-- ignore = function(buf)
+			-- 	local name = vim.api.nvim_buf_get_name(buf)
+			-- 	print(name)
+			-- 	return string.find(name, "/tldo/") ~= nil
+			-- end,
 		},
 	},
 	{
@@ -131,19 +146,30 @@ return {
 	},
 	{
 		"saghen/blink.cmp",
+		build = "cargo build --release",
 		dependencies = {
 			"rafamadriz/friendly-snippets",
-			-- "fang2hou/blink-copilot",
 		},
-		version = "1.*",
-		---@module 'blink.cmp'
-		---@type blink.cmp.Config
+		-- CHANGE 1: Use '*' to track the latest fixes (essential for snippet engine bugs)
+		version = "*",
+
 		opts = {
-			keymap = { preset = "default" },
+			-- CHANGE 2: Ensure C-y is mapped to 'select_and_accept' explicitly
+			keymap = {
+				preset = "default",
+				["<C-y>"] = { "select_and_accept" },
+			},
+
 			appearance = {
 				nerd_font_variant = "mono",
 			},
+
 			completion = {
+				accept = {
+					auto_brackets = {
+						enabled = false,
+					},
+				},
 				menu = {
 					border = "rounded",
 					draw = {
@@ -158,27 +184,24 @@ return {
 					},
 				},
 			},
+
+			-- Your existing sources config is fine
 			sources = {
-				default = {
-					-- "copilot",
-					"lazydev",
-					"lsp",
-					"path",
-					"snippets",
-					"buffer",
+				default = { "lsp", "path", "snippets", "buffer", "lazydev" },
+				per_filetype = {
+					codecompanion = { "codecompanion" },
 				},
 				providers = {
+					codecompanion = {
+						name = "CodeCompanion",
+						module = "codecompanion.providers.completion.blink",
+						enabled = true,
+					},
 					lazydev = {
 						name = "LazyDev",
 						module = "lazydev.integrations.blink",
 						score_offset = 100,
 					},
-					-- copilot = {
-					-- 	name = "copilot",
-					-- 	module = "blink-copilot",
-					-- 	score_offset = 100,
-					-- 	async = true,
-					-- },
 				},
 			},
 			fuzzy = { implementation = "prefer_rust_with_warning" },

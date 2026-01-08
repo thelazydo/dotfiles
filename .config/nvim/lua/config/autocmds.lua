@@ -160,6 +160,11 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+	command = "if mode() != 'c' | checktime | endif",
+	pattern = { "*" },
+})
+
 -- vim.api.nvim_create_autocmd("BufEnter", {
 -- 	pattern = "*.md",
 -- 	callback = function()
@@ -171,5 +176,26 @@ vim.api.nvim_create_autocmd("FileType", {
 -- 		else
 -- 			pcall(vim.cmd, "RenderMarkdown enable")
 -- 		end
+-- 	end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+-- 	group = vim.api.nvim_create_augroup("igmrrf", { clear = true }),
+-- 	pattern = "aiko.c",
+-- 	callback = function()
+-- 		local bufnr = 39
+-- 		vim.fn.jobstart({ "make", "buildrun" }, {
+-- 			stdout_buffered = true,
+-- 			on_stdout = function(_, data)
+-- 				if data then
+-- 					vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, data)
+-- 				end
+-- 			end,
+-- 			on_stderr = function(_, data)
+-- 				if data then
+-- 					vim.api.nvim_buf_set_lines(bufnr, -1, -1, false, data)
+-- 				end
+-- 			end,
+-- 		})
 -- 	end,
 -- })

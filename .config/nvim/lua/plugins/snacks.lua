@@ -19,8 +19,7 @@ return {
 		},
 		bigfile = { enabled = true },
 		dashboard = { enabled = true },
-		explorer = { enabled = true },
-
+		explorer = { enabled = false },
 		indent = { enabled = true },
 		input = { enabled = true },
 		notifier = {
@@ -54,7 +53,6 @@ return {
     { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
     { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
     { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
-    { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
     -- find
     { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
     { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
@@ -125,6 +123,7 @@ return {
     { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
     { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
     { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" , mode = { "n", "t" }},
+    { "<A-/>",      function() Snacks.terminal(nil, {  env = { SNACKS_TYPE = "disposable_shell" }, win = { position = "float", border = "rounded", title = " Disposable Terminal ", title_pos = "center", width = 0.6, height = 0.6, backdrop = 60, zindex = 50,  }, start_insert = true, cwd = vim.fn.getcwd(), }) end, desc = "Disposal Terminal", mode = { "n", "t" } },
     { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore", mode = { "n", "t" } },
     { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
     { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },

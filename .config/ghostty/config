@@ -55,3 +55,4 @@ window-padding-x = 10
 window-show-tab-bar = never
 macos-titlebar-style = transparent
 keybind = shift+enter=text:\x1b\r
+macos-option-as-alt = true

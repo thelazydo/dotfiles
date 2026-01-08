@@ -78,6 +78,7 @@ return {
 				"json-to-struct",
 				"misspell",
 				"revive",
+				"hadolint",
 				"shellcheck",
 				"shfmt",
 			},

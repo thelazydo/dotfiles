@@ -4,29 +4,6 @@ vim.opt.shortmess:remove("I")
 -- vim.cmd("colorscheme catppuccin-mocha")
 vim.cmd("colorscheme kanagawa-wave")
 
-vim.diagnostic.config({
-	virtual_text = { prefix = "●" },
-	underline = true,
-	update_in_insert = false,
-	severity_sort = true,
-	float = {
-		border = "rounded",
-		source = true,
-	},
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = "✗",
-			[vim.diagnostic.severity.WARN] = "⚠",
-			[vim.diagnostic.severity.INFO] = "ℹ",
-			[vim.diagnostic.severity.HINT] = "💡",
-		},
-		numhl = {
-			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
-			[vim.diagnostic.severity.WARN] = "WarningMsg",
-		},
-	},
-})
-
 opt.winborder = "rounded"
 opt.scrolloff = 8
 opt.sidescrolloff = 8
@@ -89,7 +66,7 @@ opt.backspace = "indent,eol,start" -- Better backspace behavior
 opt.autochdir = false -- Don't autochange dir
 opt.iskeyword:append("-") -- Treat dash as part of word
 opt.path:append("**") -- include subdirectories in search
-opt.selection = "exclusive" -- Exclusive selction
+-- opt.selection = "exclusive" -- Exclusive selction
 opt.mouse = "a" -- Enable mouse mode
 opt.clipboard:append("unnamedplus") -- Sync with system clipboard
 opt.modifiable = true -- Allow buffer modifications
