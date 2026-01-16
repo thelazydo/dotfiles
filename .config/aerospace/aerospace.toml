@@ -24,7 +24,7 @@ automatically-unhide-macos-hidden-apps = true
     alt-shift-enter ='exec-and-forget aerospace reload-config'
 
     # alt-slash = 'layout tiles horizontal vertical'
-    alt-comma = 'layout accordion horizontal vertical'
+    # alt-comma = 'layout accordion horizontal vertical'
     alt-shift-v = 'split vertical'
 
     alt-h = 'focus left'

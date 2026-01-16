@@ -5,6 +5,7 @@ return {
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			"saghen/blink.cmp",
 		},
 		event = { "BufReadPost", "BufNewFile" },
 	},
@@ -52,7 +53,7 @@ return {
 				["markdown.mdx"] = { "biome" },
 				["handlebars"] = { "biome" },
 				-- Conform will run the first available formatter
-				["python"] = { "isort", "black", stop_after_first = true },
+				["python"] = { "ruff" },
 			},
 		},
 	},
@@ -67,20 +68,43 @@ return {
 						return vim.fn.executable("go") == 1
 					end,
 				},
-				"lua-language-server",
+
+				"basedpyright",
+				"ruff",
 				"debugpy",
-				"stylua",
+
+				"clang-format",
+				"clangd",
+
+				"delve",
+
+				"docker-compose-language-service",
+				"dockerfile-language-server",
+				"fish-lsp",
+
 				"gofumpt",
 				"golines",
 				"gomodifytags",
+				"gopls",
 				"gotests",
+
+				"hadolint",
 				"impl",
+				"biome",
+				"js-debug-adapter",
 				"json-to-struct",
+				"lua-language-server",
 				"misspell",
 				"revive",
-				"hadolint",
+				"ruby-lsp",
 				"shellcheck",
 				"shfmt",
+				"stylua",
+
+				"css-lsp",
+				"tailwindcss-language-server",
+
+				"vtsls",
 			},
 		},
 	},

@@ -158,6 +158,8 @@ return {
 			keymap = {
 				preset = "default",
 				["<C-y>"] = { "select_and_accept" },
+				-- Manually invoke minuet completion.
+				["<A-y>"] = require("minuet").make_blink_map(),
 			},
 
 			appearance = {
@@ -165,6 +167,7 @@ return {
 			},
 
 			completion = {
+				trigger = { prefetch_on_insert = false },
 				accept = {
 					auto_brackets = {
 						enabled = false,
@@ -187,15 +190,19 @@ return {
 
 			-- Your existing sources config is fine
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "lazydev" },
-				per_filetype = {
-					codecompanion = { "codecompanion" },
-				},
+				default = { "lsp", "path", "snippets", "buffer", "lazydev", "codecompanion", "minuet" },
 				providers = {
 					codecompanion = {
 						name = "CodeCompanion",
 						module = "codecompanion.providers.completion.blink",
 						enabled = true,
+					},
+					minuet = {
+						name = "minuet",
+						module = "minuet.blink",
+						async = true,
+						timeout_ms = 3000,
+						score_offset = 50, --
 					},
 					lazydev = {
 						name = "LazyDev",
@@ -206,6 +213,7 @@ return {
 			},
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 			signature = { enabled = true },
+			-- Recommended to avoid unnecessary request
 		},
 		opts_extend = { "sources.default" },
 	},

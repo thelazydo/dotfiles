@@ -1,5 +1,5 @@
 vim.diagnostic.config({
-	virtual_text = { prefix = "●" },
+	virtual_text = { prefix = "●", source = "if_many" },
 	underline = true,
 	update_in_insert = false,
 	severity_sort = true,
@@ -24,3 +24,4 @@ vim.diagnostic.config({
 vim.lsp.config("*", {
 	capabilities = require("blink.cmp").get_lsp_capabilities(),
 })
+--
