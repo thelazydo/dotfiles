@@ -4,10 +4,10 @@ return {
 		dependencies = {
 			"nvim-neotest/nvim-nio",
 			"nvim-neotest/neotest-jest",
-			-- "marilari88/neotest-vitest",
-			-- "nvim-neotest/neotest-python",
-			-- "lawrence-laz/neotest-zig",
-			-- "fredrikaverpil/neotest-golang",
+			"marilari88/neotest-vitest",
+			"nvim-neotest/neotest-python",
+			"lawrence-laz/neotest-zig",
+			"fredrikaverpil/neotest-golang",
 			"mrcjkb/rustaceanvim",
 		},
 		opts = {
@@ -20,15 +20,15 @@ return {
 						return vim.fn.getcwd()
 					end,
 				},
-				-- ["neotest-zig"] = {},
-				-- ["neotest-vitest"] = {},
+				["neotest-zig"] = {},
+				["neotest-vitest"] = {},
 				["rustaceanvim.neotest"] = {},
-				-- ["neotest-python"] = {},
-				-- ["neotest-golang"] = {
-				-- 	-- Here we can set options for neotest-golang, e.g.
-				-- 	-- go_test_args = { "-v", "-race", "-count=1", "-timeout=60s" },
-				-- 	dap_go_enabled = true, -- requires leoluz/nvim-dap-go
-				-- },
+				["neotest-python"] = {},
+				["neotest-golang"] = {
+					-- Here we can set options for neotest-golang, e.g.
+					-- go_test_args = { "-v", "-race", "-count=1", "-timeout=60s" },
+					dap_go_enabled = true, -- requires leoluz/nvim-dap-go
+				},
 			},
 		},
 	},

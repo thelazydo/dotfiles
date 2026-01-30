@@ -36,7 +36,6 @@ return {
 
 			formatters_by_ft = {
 				lua = { "stylua" },
-				rust = { "rustfmt", lsp_format = "fallback" },
 				javascript = { "biome", stop_after_first = true },
 				sh = { "shfmt" },
 				javascriptreact = { "biome" },
@@ -53,7 +52,7 @@ return {
 				["markdown.mdx"] = { "biome" },
 				["handlebars"] = { "biome" },
 				-- Conform will run the first available formatter
-				["python"] = { "ruff" },
+				["python"] = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
 			},
 		},
 	},

@@ -24,7 +24,7 @@ end
 set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
 
 # NVM
-set --universal nvm_default_version v24.11.1
+set --universal nvm_default_version v25.5.0
 
 # Homebrew
 fish_add_path /opt/homebrew/bin/
@@ -99,4 +99,5 @@ fzf --fish | source
 # Starfish
 starship init fish | source
 
-string match -q "$TERM_PROGRAM" kiro and . (kiro --locate-shell-integration-path fish)
+# Added by Antigravity
+fish_add_path /Users/igmrrf/.antigravity/antigravity/bin

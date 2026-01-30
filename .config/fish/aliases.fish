@@ -99,6 +99,7 @@ alias RUST="cd ~/Desktop/tmp/RUST"
 
 # PYTHON
 alias python="python3"
+alias activate="source ./.venv/bin/activate.fish"
 alias create-django="python3 -m venv ussop && cd ussop && source ./bin/activate && pip3 install django && django-admin startproject "
 alias pymigrations="python3 manage.py makemigrations"
 alias pymigrate="python3 manage.py migrate"
