@@ -1,9 +1,6 @@
 local opt = vim.opt
 vim.opt.shortmess:remove("I")
 
--- vim.cmd("colorscheme catppuccin-mocha")
-vim.cmd("colorscheme kanagawa-wave")
-
 opt.winborder = "rounded"
 opt.scrolloff = 8
 opt.sidescrolloff = 8

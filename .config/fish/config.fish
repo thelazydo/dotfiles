@@ -24,7 +24,30 @@ end
 set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
 
 # NVM
-set --universal nvm_default_version v25.5.0
+set --universal nvm_default_version v24.13.1
+set -gx NVM_DEFAULT_VERSION v24.13.1
+# For yarn
+set -gx FNM_COREPACK_ENABLED true
+
+function __check_nvmrc --on-variable PWD --description 'Auto-switch node version based on .nvmrc'
+    # Do not run in background jobs or command substitutions
+    status --is-command-substitution; and return
+
+    if test -f .nvmrc
+        set -l nvmrc_version (cat .nvmrc)
+        set -l current_version (nvm current)
+
+        if test "$nvmrc_version" != "$current_version"
+            nvm use
+        end
+    else if test (nvm current) != $NVM_DEFAULT_VERSION
+        # Revert to default if no .nvmrc is found and we aren't on default
+        echo "Reverting to nvm default version"
+        nvm use default
+    end
+end
+
+__check_nvmrc
 
 # Homebrew
 fish_add_path /opt/homebrew/bin/

@@ -79,6 +79,7 @@ return {
 
 				"docker-compose-language-service",
 				"dockerfile-language-server",
+
 				"fish-lsp",
 
 				"gofumpt",

@@ -1,5 +1,4 @@
 local wezterm = require("wezterm")
-local resurrect_keys = require("resurrect")
 local merge_tables = require("helpers").merge_tables
 
 local action = wezterm.action
@@ -62,6 +61,6 @@ local system_keys = {
 	},
 }
 
-merge_tables(system_keys, resurrect_keys)
+-- merge_tables(system_keys, resurrect_keys)
 
 return system_keys

@@ -1,4 +1,48 @@
 return {
+	---@type LazySpec
+	{
+		"mikavilpas/yazi.nvim",
+		enabled = false,
+		version = "*", -- use the latest stable version
+		event = "VeryLazy",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim", lazy = true },
+		},
+		keys = {
+			-- 👇 in this section, choose your own keymappings!
+			{
+				"<leader>e",
+				mode = { "n", "v" },
+				"<cmd>Yazi<cr>",
+				desc = "Open yazi at the current file",
+			},
+			{
+				-- Open in the current working directory
+				"<leader>Y",
+				"<cmd>Yazi cwd<cr>",
+				desc = "Open the file manager in nvim's working directory",
+			},
+			{
+				"<leader>y",
+				"<cmd>Yazi toggle<cr>",
+				desc = "Resume the last yazi session",
+			},
+		},
+		---@type YaziConfig | {}
+		opts = {
+			-- if you want to open yazi instead of netrw, see below for more info
+			open_for_directories = true,
+			keymaps = {
+				show_help = "<f1>",
+			},
+		},
+		-- 👇 if you use `open_for_directories=true`, this is recommended
+		init = function()
+			-- mark netrw as loaded so it's not loaded at all.
+			-- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
+			vim.g.loaded_netrwPlugin = 1
+		end,
+	},
 	{
 		"stevearc/oil.nvim",
 		---@module 'oil'
@@ -59,7 +103,7 @@ return {
 				-- Set to `false` to disable, or "name" to keep it on the file names
 				constrain_cursor = "editable",
 				-- Set to true to watch the filesystem for changes and reload oil
-				watch_for_changes = false,
+				watch_for_changes = true,
 				-- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap
 				-- options with a `callback` (e.g. { callback = function() ... end, desc = "", mode = "n" })
 				-- Additionally, if it is a string that matches "actions.<name>",
@@ -70,7 +114,6 @@ return {
 					["g?"] = { "actions.show_help", mode = "n" },
 
 					["<CR>"] = "actions.select",
-					["l"] = "actions.select",
 
 					["<C-v>"] = { "actions.select", opts = { vertical = true } },
 					["<C-h>"] = { "actions.select", opts = { horizontal = true } },
@@ -85,7 +128,7 @@ return {
 
 					["-"] = { "actions.parent", mode = "n" },
 
-					["h"] = { "actions.parent", mode = "n" },
+					["z"] = { "actions.parent", mode = "n" },
 
 					["_"] = { "actions.open_cwd", mode = "n" },
 					["`"] = { "actions.cd", mode = "n" },

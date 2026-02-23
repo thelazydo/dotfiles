@@ -1,8 +1,34 @@
+-- for _, group in ipairs(vim.g.ui_groups) do
+-- 	-- Get current highlight properties
+-- 	local hl = vim.api.nvim_get_hl(0, { name = group })
+--
+-- 	local tabline = vim.api.nvim_get_hl(0, { name = "TabLine" })
+-- 	-- Update the group to have no background
+-- 	-- (we keep the foreground and other attributes)
+-- 	vim.api.nvim_set_hl(0, group, {
+-- 		bg = "NONE",
+-- 		ctermbg = "NONE",
+-- 		fg = hl.fg,
+-- 		bold = hl.bold,
+-- 		italic = hl.italic,
+-- 	})
+--
+-- 	vim.api.nvim_set_hl(0, "TabLine", { bg = "NONE", fg = "#6c7086" }) -- Inactive tabs (dimmed)
+-- 	vim.api.nvim_set_hl(0, "TabLineFill", { bg = "NONE" }) -- Empty space
+-- 	vim.api.nvim_set_hl(0, "TabLineSel", {
+-- 		bg = "NONE",
+-- 		fg = "#ffffff", -- Bright white text
+-- 		bold = true, -- Make it bold
+-- 		underline = true, -- Add an underline
+-- 	})
+-- end
+
 return {
 	-- 1. Catppuccin (most popular)
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
+		-- enabled = false,
 		priority = 1000,
 		opts = {
 			flavour = "mocha",
@@ -29,19 +55,31 @@ return {
 				},
 			},
 		},
+		config = function(_, opts)
+			require("catppuccin").setup(opts)
+			vim.cmd("colorscheme catppuccin-mocha")
+		end,
 	},
 
 	-- 2. Tokyonight
 	{
 		"folke/tokyonight.nvim",
-		lazy = true,
+		enabled = false,
+		lazy = false,
+		priority = 1000,
 		opts = { style = "storm", transparent = true, terminal_colors = true },
+		config = function(_, opts)
+			require("tokyonight").setup(opts)
+			vim.cmd("colorscheme tokyonight-moon")
+		end,
 	},
 
 	-- 3 Kanagawa
 	{
 		"rebelot/kanagawa.nvim",
-		lazy = true,
+		enabled = false,
+		lazy = false,
+		priority = 1000,
 		opts = {
 			compile = false, -- enable compiling the colorscheme
 			undercurl = true, -- enable undercurls
@@ -70,26 +108,58 @@ return {
 				light = "lotus",
 			},
 		},
+
+		config = function(_, opts)
+			require("kanagawa").setup(opts)
+			vim.cmd("colorscheme kanagawa-wave")
+		end,
 	},
 
 	-- 4. Nightfox
 	{
 		"EdenEast/nightfox.nvim",
-		lazy = true,
+		enabled = false,
+		lazy = false,
+		priority = 1000,
 		opts = { options = { transparent = true, styles = { comments = "italic" } } },
+		config = function(_, opts)
+			require("nightfox").setup(opts)
+			vim.cmd("colorscheme nightfox")
+		end,
 	},
 
 	-- 5. Gruvbox Material
 	{
 		"sainnhe/gruvbox-material",
 		opts = { overrides = { Normal = { bg = "NONE" }, NormalFloat = { bg = "NONE" } } },
+
+		enabled = false,
 		lazy = true,
+		priority = 1000,
 		config = function(_, opts)
 			-- Gruvbox uses vim.g variables for themes
 			vim.g.gruvbox_material_background = "medium"
 			for group, hl in pairs(opts.overrides) do
 				vim.api.nvim_set_hl(0, group, hl)
 			end
+
+			require("gruvbox").setup(opts)
+			vim.cmd("colorscheme gruvbox-material")
+		end,
+	},
+	-- 6. Koda
+	{
+		"oskarnurm/koda.nvim",
+
+		enabled = false,
+		lazy = false,
+		priority = 1000,
+		opts = {
+			transparent = true,
+		},
+		config = function(_, opts)
+			require("koda").setup(opts)
+			vim.cmd("colorscheme koda")
 		end,
 	},
 }
