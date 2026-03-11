@@ -40,6 +40,7 @@ automatically-unhide-macos-hidden-apps = true
     alt-minus = 'resize smart -50'
     alt-equal = 'resize smart +50'
     alt-shift-g = ['exec-and-forget open -a Ghostty', 'workspace 6']
+    alt-shift-w = ['exec-and-forget open -a Wezterm', 'workspace 6']
     alt-shift-b = ['exec-and-forget open -a Google\ Chrome', 'workspace 1']
 
     alt-1 = 'workspace 1'
@@ -67,10 +68,7 @@ automatically-unhide-macos-hidden-apps = true
     1 = 'main'
     2 = 'main'
     3 = 'main'
-    4 = 'main'
 
-    5 = 'main'
-    6 = ['secondary', 'main']
     7 = ['secondary', 'main']
     8 = ['secondary', 'main']
     9 = ['secondary', 'main']
@@ -100,8 +98,13 @@ automatically-unhide-macos-hidden-apps = true
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = 'move-node-to-workspace 6'
+run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = 'move-node-to-workspace 7'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace 1'
+
