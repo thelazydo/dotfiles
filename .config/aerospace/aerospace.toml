@@ -17,51 +17,45 @@ automatically-unhide-macos-hidden-apps = true
     inner.vertical =   5
     outer.left =       10
     outer.bottom =     10
-    outer.top =        0
+    outer.top =        5
     outer.right =      10
 
 [mode.main.binding]
-    alt-shift-enter ='exec-and-forget aerospace reload-config'
+    cmd-alt-ctrl-shift-enter ='exec-and-forget aerospace reload-config'
 
-    alt-shift-slash = 'layout tiles horizontal vertical'
-    alt-shift-comma = 'layout accordion horizontal vertical'
-    alt-shift-v = 'split vertical'
+    cmd-alt-ctrl-shift-slash = 'layout tiles horizontal vertical'
+    cmd-alt-ctrl-shift-comma = 'layout accordion horizontal vertical'
+    cmd-alt-ctrl-shift-v = 'split vertical'
 
-    alt-h = 'focus left'
-    alt-j = 'focus down'
-    alt-k = 'focus up'
-    alt-l = 'focus right'
+    cmd-alt-ctrl-h = 'focus left'
+    cmd-alt-ctrl-j = 'focus down'
+    cmd-alt-ctrl-k = 'focus up'
+    cmd-alt-ctrl-l = 'focus right'
 
-    alt-shift-h = 'move left'
-    alt-shift-j = 'move down'
-    alt-shift-k = 'move up'
-    alt-shift-l = 'move right'
+    cmd-alt-ctrl-shift-h = 'move left'
+    cmd-alt-ctrl-shift-j = 'move down'
+    cmd-alt-ctrl-shift-k = 'move up'
+    cmd-alt-ctrl-shift-l = 'move right'
 
-    alt-minus = 'resize smart -50'
-    alt-equal = 'resize smart +50'
-    alt-shift-g = ['exec-and-forget open -a Ghostty', 'workspace 6']
-    alt-shift-w = ['exec-and-forget open -a Wezterm', 'workspace 6']
+    cmd-alt-ctrl--minus = 'resize smart -50'
+    cmd-alt-ctrl--equal = 'resize smart +50'
+    cmd-alt-ctrl-shift-g = ['exec-and-forget open -a Ghostty', 'workspace 7']
+    alt-shift-w = ['exec-and-forget open -a Wezterm', 'workspace 7']
     alt-shift-b = ['exec-and-forget open -a Google\ Chrome', 'workspace 1']
 
-    alt-1 = 'workspace 1'
-    alt-2 = 'workspace 2'
-    alt-3 = 'workspace 3'
-    alt-4 = 'workspace 4'
-    alt-5 = 'workspace 5'
-    alt-6 = 'workspace 6'
-    alt-7 = 'workspace 7'
-    alt-8 = 'workspace 8'
-    alt-9 = 'workspace 9'
+    cmd-alt-ctrl-1 = 'workspace 1'
+    cmd-alt-ctrl-2 = 'workspace 2'
+    cmd-alt-ctrl-3 = 'workspace 3'
+    cmd-alt-ctrl-7 = 'workspace 7'
+    cmd-alt-ctrl-8 = 'workspace 8'
+    cmd-alt-ctrl-9 = 'workspace 9'
 
-    alt-shift-1 = 'move-node-to-workspace 1'
-    alt-shift-2 = 'move-node-to-workspace 2'
-    alt-shift-3 = 'move-node-to-workspace 3'
-    alt-shift-4 = 'move-node-to-workspace 4'
-    alt-shift-5 = 'move-node-to-workspace 5'
-    alt-shift-6 = 'move-node-to-workspace 6'
-    alt-shift-7 = 'move-node-to-workspace 7'
-    alt-shift-8 = 'move-node-to-workspace 8'
-    alt-shift-9 = 'move-node-to-workspace 9'
+    cmd-alt-ctrl-shift-1 = 'move-node-to-workspace 1'
+    cmd-alt-ctrl-shift-2 = 'move-node-to-workspace 2'
+    cmd-alt-ctrl-shift-3 = 'move-node-to-workspace 3'
+    cmd-alt-ctrl-shift-7 = 'move-node-to-workspace 7'
+    cmd-alt-ctrl-shift-8 = 'move-node-to-workspace 8'
+    cmd-alt-ctrl-shift-9 = 'move-node-to-workspace 9'
 
     [workspace-to-monitor-force-assignment]
 
@@ -75,10 +69,10 @@ automatically-unhide-macos-hidden-apps = true
 
 
     # alt-tab = 'workspace-back-and-forth'
-    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+    cmd-alt-ctrl-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
     # alt-shift-semicolon = 'mode service'
-    alt-shift-s = 'mode service'
+    cmd-alt-ctrl-shift-s = 'mode service'
 
 [mode.service.binding]
     esc = ['reload-config', 'mode main']
@@ -87,10 +81,10 @@ automatically-unhide-macos-hidden-apps = true
     backspace = ['close-all-windows-but-current', 'mode main']
 
 
-    alt-shift-h = ['join-with left', 'mode main']
-    alt-shift-j = ['join-with down', 'mode main']
-    alt-shift-k = ['join-with up', 'mode main']
-    alt-shift-l = ['join-with right', 'mode main']
+    cmd-alt-ctrl-shift-h = ['join-with left', 'mode main']
+    cmd-alt-ctrl-shift-j = ['join-with down', 'mode main']
+    cmd-alt-ctrl-shift-k = ['join-with up', 'mode main']
+    cmd-alt-ctrl-shift-l = ['join-with right', 'mode main']
 
     down = 'volume down'
     up = 'volume up'
