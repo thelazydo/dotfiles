@@ -1,0 +1,110 @@
+(defcfg
+  macos-dev-names-include (
+    "Apple Internal Keyboard / Trackpad"
+    "Karabiner DriverKit VirtualHIDKeyboard 1.8.0"
+    "EPOMAKER Split65"
+  )
+  ;; process-unmapped-keys allows keys not in defsrc to pass through
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+  delegate-to-first-layer yes
+)
+
+
+(defvar
+  tap-hold 200
+)
+
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft up
+  fn   lctl lalt lmet         spc              rmet ralt left down rght
+)
+
+(defalias
+  ;; Multi-mapping to trigger the macOS Emoji Picker
+  emj (multi lctl lmet spc)
+  
+  ;; Tap for Emoji, Hold for the Function Layer
+  fn_emj (tap-hold 200 200 @emj (layer-toggle fn_layer))
+
+  dict f18  ;; Maps your Voice Jotter to F18
+  dnd  f19  ;; Maps your Moon icon to F19
+
+  ;; Tap for ESC, Hold for the Ctrl
+  esc_ctl (tap-hold 200 200 esc lctl)  ;; MT(MOD_LCTL,KC_ESC)
+  spc_hyper (tap-hold 200 200 spc (multi lctl lmet lalt))  ;; MT(MOD_LCTL,KC_ESC)
+
+  ;; ==========================================
+  ;; LAYER TOGGLES (from TG, TO, and MO)
+  ;; ==========================================
+  ;; VIA's TG(1) acts as an on/off switch. 
+  tog_l1  (layer-switch layer1)   ;; Hold for Layer 1
+  tog_b   (layer-switch base)     ;; Switch back to Base
+  to0     (layer-switch base)     ;; Explicit TO(0) for your 'A' key
+  
+  mo2     (layer-toggle layer2)   ;; VIA MO(2) - hold for Layer 2
+  tab_swc (tap-hold 200 200 tab @tog_l1)
+  ;; ==========================================
+  ;; LAYER 1: MOUSE MOVEMENT & CLICKS
+  ;; ==========================================
+  m_u  (movemouse-up 4 4)
+  m_d  (movemouse-down 4 4)
+  m_l  (movemouse-left 4 4)
+  m_r  (movemouse-right 4 4)
+  mlft mlft  ;; Left Click (Your 'G' key)
+  mrgt mrgt  ;; Right Click (Your 'T' key)
+
+  ;; ==========================================
+  ;; LAYER 2: MOUSE SCROLL WHEEL
+  ;; ==========================================
+  mw_u (mwheel-up 50 120)
+  mw_d (mwheel-down 50 120)
+  mw_l (mwheel-left 50 120)
+  mw_r (mwheel-right 50 120)
+)
+
+;; The default base layer
+(deflayer base
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @tab_swc q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @esc_ctl a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft up
+  @fn_emj caps lalt lmet      @spc_hyper              rmet ralt left down rght
+  )
+
+
+;; You MUST define the layer that @fn_emj toggles
+(deflayer fn_layer
+  _    brdn brup C-up M-spc @dict @dnd prev pp next mute vold volu del
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    pgup
+  _    _    _    _            _                _    _    home pgdn end
+)
+
+;; -----------------------------------------------------------------------------
+;; LAYER 1 (Mouse Movement & F-Keys)
+;; -----------------------------------------------------------------------------
+(deflayer layer1
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  @tog_b _    _    @m_u _    @mrgt _   _    _    _    _    _    _    _
+  _    _    @m_l @m_d @m_r @mlft _   _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _              @mo2           _    _    _    _    _
+)
+
+
+;; -----------------------------------------------------------------------------
+;; LAYER 2 (Scroll Wheel & Return to Base)
+;; -----------------------------------------------------------------------------
+(deflayer layer2
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    @mw_u _    _    _    _    _    _    _    _    _    _
+  _    @to0 @mw_l @mw_d @mw_r _  _   _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
+
