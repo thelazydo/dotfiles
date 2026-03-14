@@ -1,8 +1,8 @@
 local wezterm = require("wezterm")
 local merge_tables = require("helpers").merge_tables
-
 local action = wezterm.action
 local action_callback = wezterm.action_callback
+wezterm.plugin.require("https://github.com/abidibo/wezterm-sessions")
 
 local system_keys = {
 	-- Pane keys
@@ -22,9 +22,6 @@ local system_keys = {
 	{ key = "\\", mods = "LEADER", action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "-", mods = "LEADER", action = action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 
-	-- Reload config
-	{ key = "r", mods = "LEADER", action = action.ReloadConfiguration },
-
 	-- Resize panes
 	{ key = "h", mods = "CTRL|SHIFT", action = action.AdjustPaneSize({ "Left", 5 }) },
 	{ key = "l", mods = "CTRL|SHIFT", action = action.AdjustPaneSize({ "Right", 6 }) },
@@ -41,11 +38,7 @@ local system_keys = {
 	{ key = "k", mods = "LEADER", action = action.ActivatePaneDirection("Up") },
 
 	-- Copy mode
-	{ key = "[", mods = "LEADER", action = action.ActivateCopyMode },
-
-	-- Persistence
-	{ key = "s", mods = "LEADER", action = action.EmitEvent("save-layout") },
-	{ key = "r", mods = "LEADER", action = action.EmitEvent("restore-layout") },
+	{ key = "c", mods = "LEADER", action = action.ActivateCopyMode },
 
 	{
 		key = ",",
@@ -57,6 +50,122 @@ local system_keys = {
 					window:active_tab():set_title(line)
 				end
 			end),
+		}),
+	},
+
+	{
+		key = "s",
+		mods = "LEADER",
+		action = action({ EmitEvent = "save_session" }),
+	},
+	{
+		key = "S",
+		mods = "LEADER",
+		action = action({ EmitEvent = "load_session" }),
+	},
+	{
+		key = "r",
+		mods = "LEADER",
+		action = action({ EmitEvent = "restore_session" }),
+	},
+	{
+		key = "d",
+		mods = "LEADER",
+		action = action({ EmitEvent = "delete_session" }),
+	},
+	{
+		key = "e",
+		mods = "LEADER",
+		action = action({ EmitEvent = "edit_session" }),
+	},
+	{
+		key = "a",
+		mods = "LEADER",
+		action = action({ EmitEvent = "toggle_autosave" }),
+	},
+	{
+		key = "f",
+		mods = "LEADER",
+		action = action({ EmitEvent = "fork_session" }),
+	},
+
+	-- Rename current workspace
+	{
+		key = "<",
+		mods = "LEADER",
+		action = action.PromptInputLine({
+			description = "Enter new workspace name",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
+				end
+			end),
+		}),
+	},
+
+	{
+		key = "p",
+		mods = "LEADER",
+		action = wezterm.action.SwitchWorkspaceRelative(-1),
+	},
+
+	{
+		key = "n",
+		mods = "LEADER",
+		action = wezterm.action.SwitchWorkspaceRelative(1),
+	},
+
+	-- Fuzzy find workspace and switch or create random
+	{
+		key = "w",
+		mods = "LEADER",
+		action = action.ShowLauncherArgs({
+			flags = "FUZZY|WORKSPACES",
+		}),
+	},
+	-- Prompt for a name to use for a new workspace and switch to it.
+	{
+		key = "W",
+		mods = "LEADER",
+		action = action.PromptInputLine({
+			description = wezterm.format({
+				{ Attribute = { Intensity = "Bold" } },
+				{ Foreground = { AnsiColor = "Fuchsia" } },
+				{ Text = "Enter name for new workspace" },
+			}),
+			action = wezterm.action_callback(function(window, pane, line)
+				-- line will be `nil` if they hit escape without entering anything
+				-- An empty string if they just hit enter
+				-- Or the actual line of text they wrote
+				if line then
+					window:perform_action(
+						action.SwitchToWorkspace({
+							name = line,
+						}),
+						pane
+					)
+				end
+			end),
+		}),
+	},
+
+	-- Switch to a monitoring workspace, which will have `btop` launched into it
+	{
+		key = "y",
+		mods = "LEADER",
+		action = action.SwitchToWorkspace({
+			name = "default",
+		}),
+	},
+	-- Switch to a monitoring workspace, which will have `btop` launched into it
+	{
+		key = "u",
+		mods = "LEADER",
+		action = action.SwitchToWorkspace({
+			name = "monitoring",
+			spawn = {
+				args = { "/opt/homebrew/bin/btop" },
+			},
 		}),
 	},
 }

@@ -7,6 +7,8 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+config.unix_domains = { { name = "unix" } } -- Enables the multiplexer
+config.default_gui_startup_args = { "connect", "unix" } -- Auto-connect on launch
 config.leader = { key = "w", mods = "CTRL", timeout_milliseconds = 1000 }
 config.hyperlink_rules = {
 	-- Matches: a URL in parens: (URL)
@@ -19,7 +21,7 @@ config.hyperlink_rules = {
 	{
 		regex = "\\[(\\w+://\\S+)\\]",
 		format = "$1",
-		highlight = 1,
+		highlight = 3,
 	},
 	-- Matches: a URL in curly braces: {URL}
 	{
@@ -45,10 +47,9 @@ config.hyperlink_rules = {
 	},
 }
 
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.90
+config.macos_window_background_blur = 20
 config.window_decorations = "RESIZE"
-config.max_fps = 120
--- config.prefer_egl = true
 config.window_padding = {
 	-- left = 0,
 	-- right = 0,
@@ -56,7 +57,7 @@ config.window_padding = {
 	bottom = 0,
 }
 config.color_scheme = "Catppuccin Mocha"
-config.use_fancy_tab_bar = false
+config.use_fancy_tab_bar = true
 config.tab_bar_at_bottom = true
 config.scrollback_lines = 5000
 config.enable_scroll_bar = false
