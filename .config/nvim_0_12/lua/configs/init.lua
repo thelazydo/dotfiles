@@ -1,0 +1,6 @@
+require("configs.conf")
+require("configs.keymaps")
+require("configs.options")
+require("configs.autocmds")
+require("configs.usercmds")
+require("configs.diagnostics")

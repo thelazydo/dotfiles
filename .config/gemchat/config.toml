@@ -1,0 +1,4 @@
+[approval]
+default_tier = "autonomous"
+dangerous_tools = ["delete_file"]
+safe_tools = []

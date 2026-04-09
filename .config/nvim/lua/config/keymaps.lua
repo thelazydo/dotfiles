@@ -232,6 +232,37 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result
 --keywordprg
 map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 
+local function open_floating_netrw()
+	-- Calculate window size and position
+	local width = math.floor(vim.o.columns * 0.8)
+	local height = math.floor(vim.o.lines * 0.8)
+	local col = math.floor((vim.o.columns - width) / 2)
+	local row = math.floor((vim.o.lines - height) / 2)
+
+	-- Create a new unlisted buffer
+	local buf = vim.api.nvim_create_buf(false, true)
+
+	-- Define window configuration
+	local win_opts = {
+		relative = "editor",
+		width = width,
+		height = height,
+		col = col,
+		row = row,
+		style = "minimal",
+		border = "rounded",
+	}
+
+	-- Open the window and focus it
+	local win = vim.api.nvim_open_win(buf, true, win_opts)
+
+	-- Launch Netrw in the new buffer
+	vim.cmd("Explore")
+end
+
+-- Create a keybinding to trigger it
+vim.keymap.set("n", "<leader>fe", open_floating_netrw, { desc = "Open floating Netrw" })
+
 -- local term = require("utils.trash")
 -- term.setup({ persist = true })
 --
