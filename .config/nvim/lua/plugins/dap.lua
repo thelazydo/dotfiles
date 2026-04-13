@@ -34,6 +34,12 @@ utils.lazy_load_event("dapui", { "BufReadPost" }, function(opts)
 	end, {
 		desc = "Open Dap UI ",
 	})
+
+	vim.keymap.set("n", "<leader>dx", function()
+		require("dapui").close()
+	end, {
+		desc = "Close Dap UI ",
+	})
 end)
 
         -- stylua: ignore

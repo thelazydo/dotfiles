@@ -49,21 +49,7 @@ vim.api.nvim_create_user_command("UpdatePlugins", function()
 		vim.notify("No plugins found in " .. pack_path, vim.log.levels.WARN)
 		return
 	end
-
-	for _, plugin_path in ipairs(plugins) do
-		local name = vim.fn.fnamemodify(plugin_path, ":t")
-
-		vim.system({ "git", "-C", plugin_path, "pull" }, {}, function(obj)
-			vim.schedule(function()
-				if obj.code == 0 then
-					print("✓ Updated " .. name)
-				else
-					vim.notify("Failed to update " .. name .. ": " .. obj.stderr, vim.log.levels.ERROR)
-				end
-			end)
-		end)
-	end
-	vim.cmd("TSUpdate")
+	vim.pack.update()
 end, { desc = "Git pull all plugins in the 'opt' directory" })
 
 --- 2. INSTALL A NEW PLUGIN

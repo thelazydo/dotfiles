@@ -1,10 +1,17 @@
 local opt = vim.opt
 
+vim.o.winborder = "rounded"
+vim.g.netrw_liststyle = 3
+vim.g.netrw_banner = 0 -- help banner(0-1)
+-- vim.g.netrw_browse_split = 4 -- where to open files (1-horiz,2-vert,3-net_tab,4-prev_win)
+-- vim.g.netrw_winsize = 80
+vim.g.netrw_altv = 1 -- vertical split (0-left, 1-right)
+
 -- stylua: ignore
-vim.opt.shortmess:append("I")
+opt.shortmess:append("I")
 opt.winborder = "rounded" -- set popup windows border
 opt.laststatus = 3
-opt.showmode = false
+opt.showmode = true
 opt.termguicolors = true
 opt.signcolumn = "yes"
 opt.updatetime = 200
@@ -21,7 +28,7 @@ opt.autocomplete = true -- enable autocomplete suggestions
 opt.pumborder = "rounded" -- set suggestion window
 opt.pummaxwidth = 40 -- set max widown width
 opt.pumheight = 7 -- set height
-opt.completeopt = "fuzzy,menu,menuone,noinsert,noselect,popup" -- set complete options
+opt.completeopt = "fuzzy,menu,menuone,noinsert,popup" -- set complete options
 opt.complete = ".,o" -- use buffer and omnifunc
 --
 -- Number settings
@@ -62,4 +69,18 @@ opt.splitright = true
 opt.redrawtime = 10000
 opt.maxmempattern = 20000
 opt.iskeyword:append("-") -- Treat dash as part of word
-opt.clipboard:append("unnamedplus") -- include system clipboard
+-- opt.clipboard:append("unnamedplus") -- include system clipboard
+
+-- Set these once globally
+vim.o.foldlevelstart = 99
+vim.o.foldlevel = 20
+
+-- opt.background = "dark"
+opt.fillchars = {
+	foldopen = "",
+	foldclose = "",
+	fold = " ",
+	foldsep = " ",
+	diff = "╱",
+	eob = " ",
+}

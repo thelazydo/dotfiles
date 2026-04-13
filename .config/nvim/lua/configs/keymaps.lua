@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 
 map("n", "<leader>xs", ":update<CR> :source $MYVIMRC<CR>", { desc = "Source" })
+map("n", "<leader>rr", ":restart<CR>", { desc = "Restart neovim" })
 
 -- File
 map("n", "<leader>%", ":enew<CR>", { desc = "Create new file" })
@@ -40,19 +41,10 @@ map("i", "<C-l>", "<Esc>la", { desc = "Move to the right one char", noremap = tr
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- commenting
-map(
-	"n",
-	"gco",
-	"o<ESC>Vcx<ESC><CMD>normal gcc<CR>fxa<BS>",
-	{ desc = "Add comment below", noremap = true, silent = true }
-)
-map(
-	"n",
-	"gcO",
-	"O<ESC>Vcx<ESC><CMD>normal gcc<CR>fxa<BS>",
-	{ desc = "Add comment above", noremap = true, silent = true }
-)
+-- -- stylua: ignore
+-- map( "n", "gco", "o<ESC>Vcx<ESC><CMD>normal gcc<CR>fxa<BS>", { desc = "Add comment below", noremap = true, silent = true })
+-- -- stylua: ignore
+-- map( "n", "gcO", "O<ESC>Vcx<ESC><CMD>normal gcc<CR>fxa<BS>", { desc = "Add comment above", noremap = true, silent = true })
 
 -- Window
 map("n", "<leader>-", "<C-w>s", { desc = "Split window below", remap = true })
@@ -87,24 +79,17 @@ map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = tru
 map("n", "<leader>uF", "<cmd>ToggleFormat<cr>", { desc = "Toggle global format-on-save" })
 map("n", "<leader>uf", "<cmd>ToggleBuffFormat<cr>", { desc = "Toggle format-on-save for buffer" })
 
+-- Health
+map("n", "<leader>hp", "<cmd>checkhealth vim.pack<cr>", { desc = "Checkhealth vim.pack" })
+map("n", "<leader>hl", "<cmd>checkhealth vim.lsp<cr>", { desc = "Checkhealth vim.lsp" })
+map("n", "<leader>hn", "<cmd>checkhealth nvim-treesitter<cr>", { desc = "Checkhealth nvim-treesitter" })
+map("n", "<leader>hs", "<cmd>checkhealth snacks<cr>", { desc = "Checkhealth snacks" })
+
 -- Buffer
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-map("n", "<leader>bo", function()
-	local current = vim.api.nvim_get_current_buf()
-	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if buf ~= current and vim.api.nvim_buf_is_loaded(buf) then
-			local bo = vim.bo[buf]
-
-			if bo.buftype == "" and bo.buflisted and not bo.modified then
-				pcall(vim.api.nvim_buf_delete, buf, { force = false })
-			end
-		end
-	end
-end, { desc = "Delete Other File Buffers" })
-
 map("n", "<leader>k", vim.lsp.buf.signature_help, { desc = "Signature help" })
 
 -- using ? reverses n/N in comparison to /
@@ -123,6 +108,8 @@ map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+map("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 map("n", "<leader><tab>>", ":tabmove +1<CR>", { desc = "Move tab right" })
 map("n", "<leader><tab><", ":tabmove -1<CR>", { desc = "Move tab left" })
@@ -130,6 +117,16 @@ map("n", "<leader><tab><", ":tabmove -1<CR>", { desc = "Move tab left" })
 -- Manage Packs
 map("n", "<leader>pU", function()
 	vim.pack.update()
-end)
--- Terminal
-map("t", "<C-/>", "<cmd>close<cr>")
+end, { desc = "Pack update" })
+-- =====================================================================
+-- Autocomplete Keymaps
+-- =====================================================================
+
+vim.keymap.set("i", "<CR>", function()
+	if vim.fn.pumvisible() == 1 then
+		-- <C-e> explicitly cancels the completion menu, then we send <CR> for the newline
+		return "<C-e><CR>"
+	end
+	-- If the menu isn't open, just act like a normal Enter key
+	return "<CR>"
+end, { expr = true, replace_keycodes = true, desc = "Insert newline (ignore completion)" })

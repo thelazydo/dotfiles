@@ -5,6 +5,7 @@ vim.pack.add({
 local keys = {
 	{ "<leader>tm", "<cmd>ViMongo<cr>", desc = "ViMongo" },
 }
+
 local utils = require("utils")
 
 utils.map_plugin_keys(keys)
