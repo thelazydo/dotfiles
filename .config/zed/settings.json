@@ -7,6 +7,27 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "project_panel": {
+    "hide_hidden": true,
+    "hide_root": true,
+    "git_status_indicator": true,
+    "scrollbar": {
+      "horizontal_scroll": true,
+      "show": "auto"
+    },
+    "bold_folder_labels": true,
+    "auto_fold_dirs": false,
+    "git_status": true,
+    "entry_spacing": "standard",
+    "hide_gitignore": false,
+    "default_width": 240.0,
+    "dock": "right"
+  },
+  "auto_signature_help": true,
+  "which_key": {
+    "delay_ms": 500,
+    "enabled": false
+  },
   "agent": {
     "tool_permissions": {
       "tools": {
@@ -28,6 +49,11 @@
   },
   "base_keymap": "JetBrains",
   "vim_mode": true,
+  "vim": {
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true
+  },
+  "colorize_brackets": true,
   "icon_theme": {
     "mode": "system",
     "light": "Zed (Default)",
