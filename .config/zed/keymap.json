@@ -1,0 +1,68 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "shift shift": "file_finder::Toggle",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "space %": "workspace::NewFile",
+      "space c p": "workspace::CopyRelativePath",
+
+      "space w": "workspace::Save",
+      "space w a": "workspace::SaveAll",
+      "space q q": "zed::Quit",
+
+      "space -": "pane::SplitDown",
+      "space |": "pane::SplitRight",
+      "space w d": "pane::CloseActiveItem",
+
+      "space w h": "workspace::ActivatePaneLeft",
+      "space w j": "workspace::ActivatePaneDown",
+      "space w k": "workspace::ActivatePaneUp",
+      "space w l": "workspace::ActivatePaneRight",
+
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+
+      "ctrl-l": "workspace::ActivatePaneRight",
+
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      "[ b": "pane::ActivatePreviousItem",
+      "] b": "pane::ActivateNextItem",
+
+      "space k": "editor::ShowSignatureHelp",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore",
+      "ctrl-l": "vim::Right",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting",
+    "bindings": {
+      "<": ["workspace::SendKeystrokes", "<gv"],
+      ">": ["workspace::SendKeystrokes", ">gv"],
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp",
+    },
+  },
+]

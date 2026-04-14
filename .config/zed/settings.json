@@ -1,0 +1,43 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "agent": {
+    "tool_permissions": {
+      "tools": {
+        "create_directory": {
+          "default": "allow"
+        }
+      }
+    },
+    "default_model": {
+      "enable_thinking": true,
+      "provider": "google",
+      "model": "gemini-3.1-pro-preview"
+    },
+    "model_parameters": []
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "base_keymap": "JetBrains",
+  "vim_mode": true,
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark"
+  }
+}
