@@ -1,14 +1,18 @@
 [
   {
-    "context": "Workspace",
+    "context": "ProjectPanel",
     "bindings": {
-      "shift shift": "file_finder::Toggle",
+      "space e": "project_panel::Toggle",
     },
   },
   {
-    "context": "Editor && vim_mode == insert",
+    "context": "Workspace",
     "bindings": {
-      "j k": "vim::NormalBefore",
+      "shift shift": "file_finder::Toggle",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
     },
   },
   {
@@ -16,32 +20,35 @@
     "bindings": {
       "space %": "workspace::NewFile",
       "space c p": "workspace::CopyRelativePath",
-
+      "space e": "project_panel::Toggle",
       "space w": "workspace::Save",
       "space w a": "workspace::SaveAll",
+      "space b o": "pane::CloseOtherItems",
       "space q q": "zed::Quit",
+
+      "space s g": "workspace::NewSearch",
 
       "space -": "pane::SplitDown",
       "space |": "pane::SplitRight",
-      "space w d": "pane::CloseActiveItem",
 
+      "space w d": "pane::CloseActiveItem",
       "space w h": "workspace::ActivatePaneLeft",
-      "space w j": "workspace::ActivatePaneDown",
+      "space w j": "workspace::ActivatePaneRight",
       "space w k": "workspace::ActivatePaneUp",
       "space w l": "workspace::ActivatePaneRight",
+
+      "ctrl-y": "vim::Enter",
 
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
-
       "ctrl-l": "workspace::ActivatePaneRight",
 
       "shift-h": "pane::ActivatePreviousItem",
       "shift-l": "pane::ActivateNextItem",
+
       "[ b": "pane::ActivatePreviousItem",
       "] b": "pane::ActivateNextItem",
-
-      "space k": "editor::ShowSignatureHelp",
     },
   },
   {
