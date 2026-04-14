@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "FixCursorHold.nvim": {
+      "rev": "1900f89dc17c603eec29960f57c00bd9ae696495",
+      "src": "https://github.com/antoinemadec/FixCursorHold.nvim"
+    },
     "catppuccin": {
       "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
       "src": "https://github.com/catppuccin/nvim"
@@ -23,6 +27,14 @@
     "curl.nvim": {
       "rev": "f3c258e57d56a6158733a9e3bb5eeb931f204d19",
       "src": "https://github.com/oysandvik94/curl.nvim"
+    },
+    "flash.nvim": {
+      "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
+      "src": "https://github.com/folke/flash.nvim"
+    },
+    "friendly-snippets": {
+      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
+      "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "grug-far.nvim": {
       "rev": "21604255d0e8f9968322f61f2b6c09e5efe1285a",
@@ -60,6 +72,14 @@
       "rev": "fd0b7986dd0ae04e38ec7dc0c78a432e3820839c",
       "src": "https://github.com/nvim-neotest/neotest"
     },
+    "neotest-bash": {
+      "rev": "d67519428d6a3efa59707802d3290582938afb71",
+      "src": "https://github.com/rcasia/neotest-bash"
+    },
+    "neotest-bun": {
+      "rev": "af0f8684cd00a96f1e0359f1aeff2b9bf7a0ec88",
+      "src": "https://github.com/arthur944/neotest-bun"
+    },
     "neotest-golang": {
       "rev": "48634bebbfa1fe63ed50f170916112c538d8e70d",
       "src": "https://github.com/fredrikaverpil/neotest-golang"
@@ -68,13 +88,17 @@
       "rev": "0e7979d51301dfae5ef839d771bd28cf593fde3f",
       "src": "https://github.com/nvim-neotest/neotest-jest"
     },
+    "neotest-plenary": {
+      "rev": "3523adcf9ffaad1911960c5813b0136c1b63a2ec",
+      "src": "https://github.com/nvim-neotest/neotest-plenary"
+    },
     "neotest-python": {
       "rev": "e6df4f1892f6137f58135917db24d1655937d831",
       "src": "https://github.com/nvim-neotest/neotest-python"
     },
-    "neotest-vitest": {
-      "rev": "f01addc6f07b79ef1be5f4297eafbee9e0959018",
-      "src": "https://github.com/marilari88/neotest-vitest"
+    "neotest-ruby-minitest": {
+      "rev": "2fc857a30f64027447ecefe7ac95171a45b9b232",
+      "src": "https://github.com/volodya-lombrozo/neotest-ruby-minitest"
     },
     "neotest-zig": {
       "rev": "de63f3b9a182d374d2e71cf44385326682ec90e7",
@@ -160,6 +184,10 @@
     "tabscope.nvim": {
       "rev": "cba52d18fbb1171cd92c7baf916e98fb720d6ae0",
       "src": "https://github.com/backdround/tabscope.nvim"
+    },
+    "todo-comments.nvim": {
+      "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
+      "src": "https://github.com/folke/todo-comments.nvim"
     },
     "transparent": {
       "rev": "42d505ee7f7414a417edc7c669ac2700ff01b81b",

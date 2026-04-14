@@ -15,7 +15,7 @@ opt.showmode = true
 opt.termguicolors = true
 opt.signcolumn = "yes"
 opt.updatetime = 200
-opt.timeoutlen = 300
+opt.timeoutlen = 400
 opt.shiftround = true
 opt.wrap = false
 opt.spell = false
@@ -69,7 +69,7 @@ opt.splitright = true
 opt.redrawtime = 10000
 opt.maxmempattern = 20000
 opt.iskeyword:append("-") -- Treat dash as part of word
--- opt.clipboard:append("unnamedplus") -- include system clipboard
+opt.clipboard:append("unnamedplus") -- include system clipboard
 
 -- Set these once globally
 vim.o.foldlevelstart = 99

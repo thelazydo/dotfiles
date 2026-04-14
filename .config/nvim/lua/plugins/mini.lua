@@ -1,4 +1,5 @@
 vim.pack.add({
+	"https://github.com/rafamadriz/friendly-snippets",
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
 })
 vim.cmd("packadd mini.nvim")
@@ -18,35 +19,17 @@ ai.setup({
 	},
 })
 
-local hipatterns = require("mini.hipatterns")
-hipatterns.setup({
-	highlighters = {
-		-- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
-		fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
-		hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
-		todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
-		note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
-
-		-- Highlight hex color strings (`#rrggbb`) using that color
-		hex_color = hipatterns.gen_highlighter.hex_color(),
-	},
-})
-
 local utils = require("utils")
-require("mini.operators").setup() -- gx, gm, gr, gs
-require("mini.sessions").setup()
+-- TODO: when a keymap is found
+-- require("mini.operators").setup() -- gx, gm, gr, gs
 require("mini.statusline").setup()
+require("mini.sessions").setup()
 require("mini.tabline").setup()
 require("mini.align").setup()
 require("mini.pairs").setup()
-require("mini.files").setup({
-	mappings = {
-		go_in_plus = "<CR>",
-	},
-})
 
 local keys = {
-	{ "<leader>e", require("mini.files").open, desc = "Open parent directory with Oil" },
+	{ "<leader>e", require("mini.files").open, desc = "Open mini files" },
 }
 
 utils.map_plugin_keys(keys)
@@ -69,6 +52,13 @@ require("mini.surround").setup({
 	search_method = "cover",
 	silent = false,
 })
+local snips = require("mini.snippets")
 
-
-
+-- 2. Configure mini.snippets
+snips.setup({
+	-- Load from the friendly-snippets library
+	snippets = {
+		snips.gen_loader.from_lang(),
+	},
+})
+snips.start_lsp_server()

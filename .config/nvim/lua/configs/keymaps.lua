@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 map("n", "<leader>xs", ":update<CR> :source $MYVIMRC<CR>", { desc = "Source" })
-map("n", "<leader>rr", ":restart<CR>", { desc = "Restart neovim" })
+map("n", "<leader>xx", ":restart<CR>", { desc = "Restart neovim" })
 
 -- File
 map("n", "<leader>%", ":enew<CR>", { desc = "Create new file" })
@@ -115,13 +115,13 @@ map("n", "<leader><tab>>", ":tabmove +1<CR>", { desc = "Move tab right" })
 map("n", "<leader><tab><", ":tabmove -1<CR>", { desc = "Move tab left" })
 
 -- Manage Packs
-map("n", "<leader>pU", function()
+map("n", "<leader>pu", function()
 	vim.pack.update()
 end, { desc = "Pack update" })
+
 -- =====================================================================
 -- Autocomplete Keymaps
 -- =====================================================================
-
 vim.keymap.set("i", "<CR>", function()
 	if vim.fn.pumvisible() == 1 then
 		-- <C-e> explicitly cancels the completion menu, then we send <CR> for the newline

@@ -11,8 +11,15 @@ local keys = {
 utils.map_plugin_keys(keys)
 
 require("oil").setup({
+
 	keymaps = {
 		["z"] = { "actions.parent", mode = "n" },
 		["<leader>e"] = { "actions.close", mode = "n" },
+	},
+
+	float = {
+		padding = 2,
+		max_width = 0.8,
+		max_height = 0.8,
 	},
 })

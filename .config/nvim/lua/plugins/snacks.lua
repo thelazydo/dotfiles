@@ -195,12 +195,14 @@ Snacks.toggle.dim():map("<leader>uD")
     { "<leader>ps", function() Snacks.profiler.start() end,   desc = "Profiler start" },
     { "<leader>pS", function() Snacks.profiler.stop() end,    desc = "Profiler stop" },
     { "<leader>st", function() Snacks.picker.todo_comments() end,   desc = "Todo comments",                mode = { "n",                         "x" } },
-    { "<leader>tg", function() Snacks.terminal("gemini",            { win = { position = "float" } }) end, mode = "n",                           desc = "Gemini Cli" },
-    { "<leader>tG", function() Snacks.terminal("gemini --resume",   { win = { position = "float" } }) end, mode = "n",                           desc = "Gemini Cli Resume" },
-    { "<leader>ts", function() Snacks.terminal("spotify_player",    { win = { position = "float" } }) end, mode = "n",                           desc = "Gemini Cli" },
-    { "<leader>tt", function() Snacks.terminal("taskui",            { win = { position = "float" } }) end, mode = "n",                           desc = "Task Warrior UI" },
-    { "<leader>ty", function() Snacks.terminal("y",                 { win = { position = "float" } }) end, mode = "n",                           desc = "Yazi File Explorer" },
-    { "<leader>td", function() Snacks.terminal("lazydocker",        { win = { position = "float" } }) end, mode = "n",                           desc = "Lazy Docker" },
+
+    { "<leader>yg", function() Snacks.terminal("gemini",            { win = { position = "float" } }) end, mode = "n",                           desc = "Gemini Cli" },
+    { "<leader>yG", function() Snacks.terminal("gemini --resume",   { win = { position = "float" } }) end, mode = "n",                           desc = "Gemini Cli Resume" },
+    { "<leader>yp", function() Snacks.terminal("spotify_player",    { win = { position = "float" } }) end, mode = "n",                           desc = "Spotify" },
+    { "<leader>yu", function() Snacks.terminal("taskui",            { win = { position = "float" } }) end, mode = "n",                           desc = "Task Warrior UI" },
+    { "<leader>yy", function() Snacks.terminal("y",                 { win = { position = "float" } }) end, mode = "n",                           desc = "Yazi File Explorer" },
+    { "<leader>yd", function() Snacks.terminal("lazydocker",        { win = { position = "float" } }) end, mode = "n",                           desc = "Lazy Docker" },
+
     { "<leader>fi", function() Snacks.picker.files({ hidden = true, ignored = true,                        exclude = vim.g.exclude_finds }) end, mode = "n", desc = "Find git ignored & hidden files" },
 
     -- Buffer Management
@@ -208,7 +210,7 @@ Snacks.toggle.dim():map("<leader>uD")
     { "<leader>bq",      function() Snacks.bufdelete.all() end,                               desc = "Delete all buffers" },
     { "<leader>bo",      function() Snacks.bufdelete.other() end,                                desc = "Delete other buffers" },
     -- Top Pickers & Explorer
-    { "<leader><space>", function() Snacks.picker.smart() end,                                   desc = "Smart Find Files" },
+    { "<leader><space>", function() Snacks.picker.files() end,                                   desc = "Find Files" },
     { "<leader>,",       function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
     { "<leader>/",       function() Snacks.picker.grep() end,                                    desc = "Grep" },
     { "<leader>:",       function() Snacks.picker.command_history() end,                         desc = "Command History" },
@@ -269,15 +271,15 @@ Snacks.toggle.dim():map("<leader>uD")
     { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
     { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
     { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
-    -- { "gai", function() Snacks.picker.lsp_incoming_calls() end, desc = "C[a]lls Incoming" },
-    -- { "gao", function() Snacks.picker.lsp_outgoing_calls() end, desc = "C[a]lls Outgoing" },
+    { "gai", function() Snacks.picker.lsp_incoming_calls() end, desc = "C[a]lls Incoming" },
+    { "gao", function() Snacks.picker.lsp_outgoing_calls() end, desc = "C[a]lls Outgoing" },
     { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
     { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
     -- Other
-    { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
-    { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
+    { "<leader>uz",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+    { "<leader>um",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
     { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
-    { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
+    { "<leader>s.",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
     { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
     { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
     { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
@@ -309,6 +311,14 @@ Snacks.toggle.dim():map("<leader>uD")
     }
   }
 utils.map_plugin_keys(keys)
+
+vim.api.nvim_create_autocmd("FileType", {
+	-- TODO: move to somewhere neutral
+	pattern = { "snacks_picker_input" },
+	callback = function()
+		vim.opt.autocomplete = false
+	end,
+})
 
 -- =====================================================================
 -- Autocmds for file rename
